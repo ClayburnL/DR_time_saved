@@ -16,11 +16,13 @@
 % v6 fixed bugs - working on MATLAB 2023b, untested on 2019a (bar() wasn't happy with v5 in 2019a)
 % catch cases where Deep Resolve sequences have no original counterpart
 
-% Note that sequences should be more easily differentiable for future robustness of code
+% Two issues with code:
+% 1. .xml file doesn't break out into strategies - it just gives a list of sequences
+% Resolution: difficult - deleting duplicate sequences probs won’t do
+% 2. Matching deep resolve sequences to originals to find time saved. This is done by comparing first three underscore delimited strings in sequence name. e.g. t1_tse_sag. Code falls down on e.g. t1_tse_rsag.
+% Resolution: if contains ’_r\' compare first four strings instead?
 
-% To do:
-% Break summary figures into batches of 10 protocols?
-% new .xls for each list of protocols?
+% Note that sequences should be more easily differentiable for future robustness of code
 
 path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\IAMs\';
 cd(path)
