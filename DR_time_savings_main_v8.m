@@ -7,21 +7,21 @@
 % v7 semi-manual boi - protocols checked on scanner
 
 % Brain - Additional and Meningioma were absent from my list as no Deep Resolve sequences - careful with labelling
-% path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Brain_minus_Additional_and_Meningioma\';
+path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Brain_minus_Additional_and_Meningioma\';
 
 % IAM - misleading to say no time saving on two files (original sequences deleted from scanner) - so not shown in plots
-path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Copy_of_IAMs';
+% path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Copy_of_IAMs';
 
 cd(path)
 files=dir('*.*');
 
 % Brain
-% original=[505 514 1708 1498 1849 879 1456 446 939 1061 1035 514 1642 994 905 1224 947 1675 1551 1218];
-% DR=[410 419 1056 1263 994 780 1004 375 370 468 835 383 1253 671 565 932 580 1310 1435 731];
+original=[505 514 1708 1498 1849 879 1456 446 939 1061 1035 514 1642 994 905 1224 947 1675 1551 1218];
+DR=[410 419 1056 1263 994 780 1004 375 370 468 835 383 1253 671 565 932 580 1310 1435 731];
 
 % IAMS
-original=[1383 1283 283 748];
-DR=[1163 747 283 748];
+% original=[1383 1283 283 748];
+% DR=[1163 747 283 748];
 
 difference=original-DR;
 
@@ -33,20 +33,21 @@ difference=difference/60;
 % y=cell((length(files)-5),1);
 
 % Brain
-% for i=3:length(files)-1
-%     dummy=strrep(files(i).name, 'Brain -', '');
-%     dummy=strrep(dummy, 'Brain ', '');
-%     dummy=strrep(dummy, '_', '');
-%     x{i-2,1}=strrep(dummy,'.xml', ''); % get string
-%     y(i-2,:)=[original(i-2), difference(i-2)];
-% end
-
-% IAMS
-for i=3:length(files)-3 % misleading to say no time saving on last two files => no plot
-    dummy=strrep(files(i).name,'.xml', ''); % get string
-    x{i-2,1}=strrep(dummy,'IAM - ', ''); % get string
+for i=3:length(files)-1
+    dummy=strrep(files(i).name, 'Brain -', '');
+    dummy=strrep(dummy, 'Brain ', '');
+    dummy=strrep(dummy, '_', '');
+    dummy=strrep(dummy, 'Brain-', '');
+    x{i-2,1}=strrep(dummy,'.xml', ''); % get string
     y(i-2,:)=[original(i-2), difference(i-2)];
 end
+
+% IAMS
+% for i=3:length(files)-3 % misleading to say no time saving on last two files => no plot
+%     dummy=strrep(files(i).name,'.xml', ''); % get string
+%     x{i-2,1}=strrep(dummy,'IAM - ', ''); % get string
+%     y(i-2,:)=[original(i-2), difference(i-2)];
+% end
 
 %% Plot bar charts
 figure()
@@ -71,8 +72,8 @@ figure()
 
     % grid on;
     title('HM4 time savings');
-    % xlabel('Brain protocol');
-    xlabel('IAM protocol');
+    xlabel('Brain protocol');
+    % xlabel('IAM protocol');
     ylabel('Time [m]');
     legend('Deep Resolve','Original')
     set(gcf,'color','w');
