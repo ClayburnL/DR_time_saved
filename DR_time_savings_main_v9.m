@@ -13,7 +13,7 @@
 % IAM - misleading to say no time saving on two files (original sequences deleted from scanner) - so not shown in plots
 % path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Copy_of_IAMs';
 
-% Spine - only those protocols with DR implemented
+% Spine - only those protocols with DR implemented - I think that there may be some missing...
 path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Spine';
 
 cd(path)
@@ -28,8 +28,8 @@ files=dir('*.*');
 % DR=[1163 747 283 748];
 
 % Spine
-% original=[];
-% DR=[];
+original=[2436 860 1460 1116 1578];
+DR=[1651 653 736 652 1014];
 
 difference=original-DR;
 
@@ -37,8 +37,6 @@ difference=original-DR;
 original=original/60;
 DR=DR/60;
 difference=difference/60;
-
-y=cell((length(files)-5),1);
 
 % Brain
 % for i=3:length(files)-1
