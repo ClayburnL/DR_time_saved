@@ -68,6 +68,6 @@ function [] = Read_xml_fn_v7(XMLfile)
     end
     if exist('DR_seq', 'var')
         %% Write to .xls
-        % Append2xls_v6(scanner, protocol, seq_name, seq_time);
+        Append2xls_v6(scanner, protocol, seq_name, seq_time);
     end
 end
