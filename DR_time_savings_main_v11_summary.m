@@ -32,8 +32,8 @@ original=cat(1, original, [1383 1283]');
 DR=cat(1, DR, [1163 747]');
 
 % Spine
-original=cat(1, original, [2436 860 1460 1116 1578]');
-DR=cat(1, DR, [1651 653 736 652 1014]');
+original=cat(1, original, [2436 860 1460 1116 821 742 1578]');
+DR=cat(1, DR, [1651 653 736 652 605 397 1014]');
 
 % Prostate
 original=cat(1, original, [1294]');
@@ -44,8 +44,8 @@ original=cat(1, original, [2537]');
 DR=cat(1, DR, [1212]');
 
 % Neck
-original=cat(1, original, [1106 2119 858]');
-DR=cat(1, DR, [328 1624 741]');
+original=cat(1, original, [1123 1106 2119 858]');
+DR=cat(1, DR, [862 328 1624 741]');
 
 % Brain and spine
 original=cat(1, original, [2876 2370]');
@@ -89,11 +89,11 @@ for i=3:length(files)-3 % misleading to say no time saving on last two files => 
     j=j+1;
 end
 
-% Spine - only those protocols with DR implemented - I think that there may be some missing...
+% Spine - only those protocols with DR implemented
 path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Spine';
 cd(path)
 files=dir('*.*');
-for i=3:length(files)-1
+for i=3:length(files)
     protocol{j,1}=strrep(files(i).name,'.xml', ''); % get string
     anatomy{j,1}='Spine';
     j=j+1;

@@ -30,7 +30,7 @@
 % path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Copy_of_IAMs';
 
 % Spine - only those protocols with DR implemented - I think that there may be some missing...
-% path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Spine';
+path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Spine';
 
 % Prostate
 % path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Prostate';
@@ -45,7 +45,7 @@
 % path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Brain and Spine';
 
 % Head
-path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Head';
+% path='C:\Users\clayb\OneDrive\Documents\STP\MRI\Y3\Deep Resolve time savings\HM4 XML Files\Head';
 
 cd(path)
 files=dir('*.*');
@@ -61,8 +61,8 @@ files=dir('*.*');
 % DR=[1163 747 283 748];
 
 % Spine
-% original=[2436 860 1460 1116 1578];
-% DR=[1651 653 736 652 1014];
+original=[2436 860 1460 1116 821 742 1578];
+DR=[1651 653 736 652 605 397 1014];
 
 % Prostate
 % original=[1294];
@@ -73,16 +73,16 @@ files=dir('*.*');
 % DR=[1212];
 
 % Neck
-% original=[1106 2119 858];
-% DR=[328 1624 741];
+% original=[1123 1106 2119 858];
+% DR=[862 328 1624 741];
 
 % Brain and spine
 % original=[2876 2370];
 % DR=[2055 1478];
 
 % Head
-original=[799];
-DR=[458];
+% original=[799];
+% DR=[458];
 
 difference=original-DR;
 
@@ -111,10 +111,10 @@ difference=difference/60;
 % end
 
 % Spine
-% for i=3:length(files)-1
-%     x{i-2,1}=strrep(files(i).name,'.xml', ''); % get string
-%     y(i-2,:)=[DR(i-2), difference(i-2)];
-% end
+for i=3:length(files)
+    x{i-2,1}=strrep(files(i).name,'.xml', ''); % get string
+    y(i-2,:)=[DR(i-2), difference(i-2)];
+end
 
 % Prostate
 % for i=3:length(files)
@@ -144,10 +144,10 @@ difference=difference/60;
 % end
 
 % Head
-for i=3:length(files)
-    x{i-2,1}=strrep(files(i).name,'.xml', ''); % get string
-    y(i-2,:)=[DR(i-2), difference(i-2)];
-end
+% for i=3:length(files)
+%     x{i-2,1}=strrep(files(i).name,'.xml', ''); % get string
+%     y(i-2,:)=[DR(i-2), difference(i-2)];
+% end
 
 %% Plot bar charts
 figure()
@@ -174,13 +174,13 @@ figure()
     title('HM4 time savings');
     % xlabel('Brain protocol');
     % xlabel('IAM protocol');
-    % xlabel('Spine protocol');
+    xlabel('Spine protocol');
     % xlabel('Prostate protocol');
     % xlabel('Orbits protocol');
     % xlabel('Neck protocol');
     % xlabel('Head protocol');
     % xlabel('Brain & spine protocol');
-    xlabel('Head protocol');
+    % xlabel('Head protocol');
     ylabel('Time [m]');
     legend('Deep Resolve','Original')
     set(gcf,'color','w');
